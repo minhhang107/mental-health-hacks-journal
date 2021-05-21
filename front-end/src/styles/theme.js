@@ -21,9 +21,14 @@ const theme = {
     5: "3.2rem",
     6: "4.8rem",
   },
+
   fontFamily: {
     heading: "'Cormorant', serif",
     body: "'Ubuntu', sans-serif",
+  },
+
+  rounded: {
+    default: "1.2rem",
   },
 };
 
