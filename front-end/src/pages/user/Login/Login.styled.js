@@ -3,7 +3,9 @@ import styled from "styled-components";
 
 export const Section = styled.section`
   margin-top: ${(p) => p.theme.spacing[4]};
+`;
 
+export const Form = styled.form`
   > * + * {
     margin-top: ${(p) => p.theme.spacing[2]};
   }
