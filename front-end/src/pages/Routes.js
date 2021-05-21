@@ -7,7 +7,7 @@ import {
 } from "react-router-dom";
 
 const Home = React.lazy(() => import("pages/Homepage"));
-const UserLogin = React.lazy(() => import("pages/user/Login"));
+const UserLogin = React.lazy(() => import("pages/user/Login/index"));
 
 const Routes = () => {
   return (
