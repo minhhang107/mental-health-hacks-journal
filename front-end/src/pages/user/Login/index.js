@@ -4,14 +4,14 @@ import { ReactComponent as ProfileIcon } from "assets/svg/profile.svg";
 import axios from "axios";
 import Input from "components/Input/index";
 import Link from "components/ui/Link";
-import Wrapper from "components/ui/Wrapper";
+import * as Typography from "components/ui/Typography";
+import * as Wrapper from "components/ui/Wrapper";
 import React, { useState } from "react";
 import { Helmet } from "react-helmet";
 import * as Styled from "./Login.styled";
-
 const UserLogin = () => {
   return (
-    <Wrapper>
+    <Wrapper.Page>
       <Helmet>
         <title>Login</title>
       </Helmet>
@@ -19,7 +19,7 @@ const UserLogin = () => {
       <header>
         <LoginHero />
 
-        <Styled.PageTitle>Welcome Back</Styled.PageTitle>
+        <Typography.PageTitle>Welcome Back</Typography.PageTitle>
 
         <p>Glad you&apos;re back with us</p>
       </header>
@@ -31,7 +31,7 @@ const UserLogin = () => {
           New here? <Link to="/user/signup">Sign up</Link>
         </Styled.Footer>
       </Styled.Section>
-    </Wrapper>
+    </Wrapper.Page>
   );
 };
 

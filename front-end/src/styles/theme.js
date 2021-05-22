@@ -23,8 +23,8 @@ const theme = {
   },
 
   fontFamily: {
-    heading: "'Cormorant', serif",
-    body: "'Ubuntu', sans-serif",
+    serif: "'Cormorant', serif",
+    sans: "'Ubuntu', sans-serif",
   },
 
   rounded: {

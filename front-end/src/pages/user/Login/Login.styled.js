@@ -25,10 +25,3 @@ export const Button = styled(BaseButton)`
     margin: ${(p) => p.theme.spacing[4]} auto 0 auto;
   }
 `;
-
-export const PageTitle = styled.h1`
-  font-size: 3.8rem;
-  line-height: 4rem;
-  font-weight: bold;
-  margin-bottom: ${(p) => p.theme.spacing[1]};
-`;

@@ -8,7 +8,6 @@ const contained = css`
 
 const Button = styled.button`
   text-align: center;
-  border: none;
   padding: ${(p) => p.theme.spacing[3]} ${(p) => p.theme.spacing[6]};
   font-weight: 500;
 

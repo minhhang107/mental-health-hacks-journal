@@ -6,7 +6,7 @@ import {
   Switch,
 } from "react-router-dom";
 
-const Home = React.lazy(() => import("pages/Homepage"));
+const Home = React.lazy(() => import("pages/Homepage/index"));
 const UserLogin = React.lazy(() => import("pages/user/Login/index"));
 
 const Routes = () => {

@@ -11,7 +11,6 @@ export const GlobalStyles = createGlobalStyle`
   *, *::before, *::after {
     box-sizing: border-box;
     font: inherit;
-
   }
 
   html, body {
@@ -19,7 +18,8 @@ export const GlobalStyles = createGlobalStyle`
     width: 100%;
   }
 
-  h1,h2,h3,h4,h5,h6 {
-    font-family: 'Cormorant', serif
-  }
+  button {
+    cursor: pointer;
+    border:none;
+  }  
 `;
