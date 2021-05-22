@@ -5,8 +5,8 @@ import Navbar from "./Navbar";
 const Layout = ({ children, className }) => {
   return (
     <>
-      <Navbar />
       <StyledMain className={className}>{children}</StyledMain>
+      <Navbar />
     </>
   );
 };
