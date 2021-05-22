@@ -19,8 +19,6 @@ exports.validateSignupData = (newUser) => {
     error.email = "Must be a valid email address";
 
   if (isEmpty(newUser.password)) error.password = "Must not be empty";
-  if (newUser.password !== newUser.confirmPassword)
-    error.confirmPassword = "Passwords must match";
   if (isEmpty(newUser.firstName)) error.firstName = "Must not be empty";
   if (isEmpty(newUser.lastName)) error.lastName = "Must not be empty";
   // object keys return an array of keys

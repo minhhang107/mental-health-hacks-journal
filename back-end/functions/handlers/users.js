@@ -14,7 +14,6 @@ exports.signup = (req, res) => {
   const newUser = {
     email: req.body.email,
     password: req.body.password,
-    confirmPassword: req.body.confirmPassword,
     firstName: req.body.firstName,
     lastName: req.body.lastName,
     image: "default-user-image.png",
