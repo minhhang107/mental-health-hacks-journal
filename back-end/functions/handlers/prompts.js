@@ -1,4 +1,5 @@
 const { admin, db } = require("../utils/init");
+const redact = require("./redact");
 
 exports.getOnePrompt = (req, res) => {
   let promptData = {};
@@ -47,18 +48,48 @@ exports.getPromptsOfJournal = (req, res) => {
     });
 };
 
-exports.addPrompt = (req, res) => {
+exports.getRandomPrompts = (req, res) => {
+  db.collection("prompts")
+    .where("visible", "==", "true")
+    .orderBy("magnitude", "dateCreated")
+    .get()
+    .then((data) => {
+      let prompts = [];
+      data.forEach((doc) => {
+        prompts.push({
+          promptId: doc.id,
+          censoredContent: doc.data().censoredContent,
+          userId: doc.data().userId,
+          journalId: doc.data().journalId,
+          dateCreated: doc.data().dateCreated,
+          score: doc.data().score,
+          magnitude: doc.data().magnitude,
+        });
+      });
+
+      return res.status(200).json(prompts);
+    })
+    .catch((err) => {
+      console.error(err);
+      return res
+        .status(500)
+        .json({ error: "Something went wrong, please try again!" });
+    });
+};
+
+exports.addPrompt = async (journal) => {
   if (req.body.censoredContent.trim() === "") {
     return res.status(400).json({ error: "Content must not be empty" });
   }
 
   const newPrompt = {
-    censoredContent: req.body.censoredContent,
-    userId: req.user.userId,
+    redactedContent: await redact(journal.content),
+    userId: journal.userId,
     journalId: req.params.journalId,
     dateCreated: new Date().toISOString(),
-    // todo: score
-    // todo: magnitude
+    moodScore: journal.moodScore,
+    magnitude: journal.magnitude,
+    visible: journal.visible
   };
 
   db.collection("prompts")
