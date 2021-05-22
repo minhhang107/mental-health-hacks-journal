@@ -29,7 +29,11 @@ const Navbar = () => {
       <NavButton href="/" variant="contained" className={classes.margin}>
         <StarIcon />
       </NavButton>
-      <NavButton href="/" variant="contained" className={classes.margin}>
+      <NavButton
+        href="/dashboard"
+        variant="contained"
+        className={classes.margin}
+      >
         <UserIcon />
       </NavButton>
     </BottomNavigation>
