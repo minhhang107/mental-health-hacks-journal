@@ -10,6 +10,7 @@ exports.getFeedbacksOfPrompt = (req, res) => {
       data.forEach((doc) => {
         feedbacks.push({
           feedbackId: doc.id,
+          promptId: doc.data().promptId,
           userId: doc.data().userId,
           dateCreated: doc.data().dateCreated,
           option: doc.data().option,
@@ -39,6 +40,7 @@ exports.addFeedback = (req, res) => {
   const newFeedback = {
     comment: req.body.comment,
     option: req.body.option,
+    promptId: req.body.prompId,
     userId: req.user.userId,
     dateCreated: new Date().toISOString(),
   };
