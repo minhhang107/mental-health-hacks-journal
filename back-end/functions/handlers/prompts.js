@@ -29,7 +29,7 @@ exports.getPromptsOfJournal = (req, res) => {
       data.forEach((doc) => {
         prompts.push({
           promptId: doc.id,
-          censoredContent: doc.data().censoredContent,
+          redactedContent: doc.data().redactedContent,
           userId: doc.data().userId,
           journalId: doc.data().journalId,
           dateCreated: doc.data().dateCreated,
@@ -58,7 +58,7 @@ exports.getRandomPrompts = (req, res) => {
       data.forEach((doc) => {
         prompts.push({
           promptId: doc.id,
-          censoredContent: doc.data().censoredContent,
+          redactedContent: doc.data().redactedContent,
           userId: doc.data().userId,
           journalId: doc.data().journalId,
           dateCreated: doc.data().dateCreated,
@@ -78,10 +78,6 @@ exports.getRandomPrompts = (req, res) => {
 };
 
 exports.addPrompt = async (journal) => {
-  if (req.body.censoredContent.trim() === "") {
-    return res.status(400).json({ error: "Content must not be empty" });
-  }
-
   const newPrompt = {
     redactedContent: await redact(journal.content),
     userId: journal.userId,
@@ -92,19 +88,7 @@ exports.addPrompt = async (journal) => {
     visible: journal.visible
   };
 
-  db.collection("prompts")
-    .add(newPrompt)
-    .then((doc) => {
-      const resPrompt = newPrompt;
-      resPrompt.promptId = doc.id;
-      res.status(200).json(resPrompt);
-    })
-    .catch((err) => {
-      console.error(err);
-      res
-        .status(500)
-        .json({ error: "Something went wrong, please try again!" });
-    });
+  await db.collection("prompts").add(newPrompt);
 };
 
 // delete prompt
