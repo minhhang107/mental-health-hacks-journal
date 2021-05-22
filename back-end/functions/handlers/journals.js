@@ -20,7 +20,7 @@ exports.getUsersJournals = (req, res) => {
         });
       });
 
-      return res.json(journals);
+      return res.status(200).json(journals);
     })
     .catch((err) => {
       console.error(err);
@@ -69,7 +69,7 @@ exports.addJournal = async (req, res) => {
     userId: req.user.userId,
     dateCreated: new Date().toISOString(),
     moodStatus: req.body.moodStatus,
-    moodScore: analysis.score
+    moodScore: analysis.score,
   };
 
   db.collection("journals")
@@ -79,7 +79,8 @@ exports.addJournal = async (req, res) => {
       resJournal.journalId = doc.id;
 
       // Filter negative or mixed journal only when user allows
-      const isNegativeOrMixedScore = analysis.score < 0 || (analysis.score == 0 && analysis.magnitude > 1);
+      const isNegativeOrMixedScore =
+        analysis.score < 0 || (analysis.score == 0 && analysis.magnitude > 1);
       if (req.body.allowPrompt && isNegativeOrMixedScore) {
         resJournal.magnitude = analysis.magnitude;
         resJournal.visible = req.body.allowPrompt;
