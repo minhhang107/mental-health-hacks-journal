@@ -75,3 +75,44 @@ exports.addJournal = (req, res) => {
 };
 
 // delete journal
+exports.deleteJournal = (req, res) => {
+  const document = db.doc(`/journals/${req.params.journalId}`);
+  document
+    .get()
+    .then((doc) => {
+      if (!doc.exists) {
+        return res.status(400).json({ error: "Journal not found!" });
+      }
+      if (doc.data().userId !== req.user.userId) {
+        return res.status(403).json({ error: "Unauthorized" });
+      } else {
+        return document.delete();
+      }
+    })
+    .then(() => {
+      // delete all of its related prompts
+      db.collection("prompts")
+        .where("journalId", "==", `${req.params.journalId}`)
+        .get()
+        .then((docs) => {
+          const batch = db.batch();
+          docs.forEach((doc) => {
+            batch.delete(doc.ref);
+          });
+
+          // commit the batch
+          return batch.commit();
+        });
+    })
+    .then(() => {
+      res
+        .status(200)
+        .json({ message: "Journal has been deleted successfully" });
+    })
+    .catch((err) => {
+      console.error(err);
+      return res
+        .status(500)
+        .json({ error: "Something went wrong, please try again" });
+    });
+};
