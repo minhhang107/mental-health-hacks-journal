@@ -7,7 +7,9 @@ export const Container = styled.div`
   border-radius: 1.2rem;
   overflow: hidden;
   display: flex;
-
+  margin-left: 1.5%;
+  margin-right: 1.5%;
+  width: 97%;
   > svg {
     color: "#A9C8FF";
   }
