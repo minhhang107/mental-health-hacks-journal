@@ -2,10 +2,10 @@ const { admin, db } = require("../utils/init");
 const { analyze } = require("./sentiment");
 const { addPrompt } = require("./prompts");
 
-exports.getUsersJournals = (req, res) => {
+exports.getUsersJournals = (req, res) => {  
   db.collection("journals")
     .where("userId", "==", `${req.user.userId}`)
-    .orderBy("createdAt", "desc")
+    .orderBy("dateCreated", "desc")
     .get()
     .then((data) => {
       let journals = [];
