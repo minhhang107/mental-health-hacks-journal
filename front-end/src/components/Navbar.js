@@ -23,23 +23,13 @@ const Navbar = () => {
       <NavButton href="/" variant="contained" className={classes.margin}>
         <HomeIcon />
       </NavButton>
-      <NavButton
-        href="/"
-        value="1"
-        variant="contained"
-        className={classes.margin}
-      >
+      <NavButton href="/" variant="contained" className={classes.margin}>
         <CalendarIcon />
       </NavButton>
-      <NavButton
-        href="/"
-        value="2"
-        variant="contained"
-        className={classes.margin}
-      >
+      <NavButton href="/" variant="contained" className={classes.margin}>
         <StarIcon />
       </NavButton>
-      <NavButton variant="contained" className={classes.margin}>
+      <NavButton href="/" variant="contained" className={classes.margin}>
         <UserIcon />
       </NavButton>
     </BottomNavigation>
