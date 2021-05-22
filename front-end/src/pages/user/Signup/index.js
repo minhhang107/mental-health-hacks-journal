@@ -50,14 +50,11 @@ const SignupForm = () => {
 
   const handleChange = (ev) => {
     const { name, value } = ev.target;
-
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
   const handleSubmit = (ev) => {
     ev.preventDefault();
-
-    // console.log(formData);
 
     axios
       .post(
@@ -71,7 +68,7 @@ const SignupForm = () => {
       )
       .then((res) => {
         console.log(res.data.message);
-        // history.push("/");
+        history.push("/");
       })
       .catch((err) => {
         setFormData({
