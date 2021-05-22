@@ -5,9 +5,7 @@ import Layout from "../components/Layout";
 const Homepage = () => {
   return (
     <Layout>
-      <StyledSection>
-        <h1>Home</h1>
-      </StyledSection>
+      <StyledSection></StyledSection>
     </Layout>
   );
 };
