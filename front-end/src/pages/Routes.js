@@ -17,11 +17,10 @@ const Routes = () => {
       <Suspense fallback={<h1>Loading</h1>}>
         <Switch>
           <Route path="/user/login" component={UserLogin} />
-
           <Route path="/user/signup" component={UserSignup} />
+          <Route path="/user/dashboard" component={Dashboard} />
 
           <Route path="/" component={Home} exact />
-          <Route path="/dashboard" component={Dashboard} exact />
           <Route path="/404" component={() => <h1>Page not found</h1>} />
 
           <Redirect to="/404" />
