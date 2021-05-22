@@ -1,7 +1,16 @@
 const router = require("express").Router();
 
-router.get("/", (req, res) => {
-  res.status(201).json({ message: "Feedback" });
-});
+const Auth = require("../../utils/auth");
+const {
+  getFeedbacksOfPrompt,
+  addFeedback,
+  deleteFeedback,
+} = require("../../handlers/feedbacks");
+
+router.get("/:promptId/feedbacks", Auth, getFeedbacksOfPrompt);
+
+router.post("/create", Auth, addFeedback);
+
+router.delete("/:feedbackId", Auth, deleteFeedback);
 
 module.exports = router;

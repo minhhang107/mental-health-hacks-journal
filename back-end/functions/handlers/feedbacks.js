@@ -33,6 +33,7 @@ exports.addFeedback = (req, res) => {
     return res.status(400).json({ error: "Comment must not be empty" });
   }
 
+  // hard coding option
   if (req.body.option < 1 || req.body.option > 4) {
     return res.status(400).json({ error: "Invalid option selection" });
   }
