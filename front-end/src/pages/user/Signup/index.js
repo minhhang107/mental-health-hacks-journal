@@ -1,13 +1,12 @@
-import { ReactComponent as RegisterHero } from "assets/svg/register-hero.svg";
 import { ReactComponent as PasswordIcon } from "assets/svg/password.svg";
 import { ReactComponent as ProfileIcon } from "assets/svg/profile.svg";
-import axios from "axios";
+import { ReactComponent as RegisterHero } from "assets/svg/register-hero.svg";
 import Input from "components/Input/index";
 import Link from "components/ui/Link";
 // import Wrapper from "components/ui/Wrapper";
 import React, { useState } from "react";
 import { Helmet } from "react-helmet";
-import * as Styled from "./Signup.styled";
+import * as Styled from "../User.styled";
 
 const UserSignup = () => {
   return (
@@ -81,6 +80,7 @@ const SignupForm = () => {
           onChange={handleChange}
         />
       </Styled.Container>
+
       <Input
         required
         autocomplete="email"

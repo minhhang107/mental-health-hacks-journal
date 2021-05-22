@@ -8,7 +8,8 @@ import * as Typography from "components/ui/Typography";
 import * as Wrapper from "components/ui/Wrapper";
 import React, { useState } from "react";
 import { Helmet } from "react-helmet";
-import * as Styled from "./Login.styled";
+import * as Styled from "../User.styled";
+
 const UserLogin = () => {
   return (
     <Wrapper.Page>
