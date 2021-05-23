@@ -37,7 +37,9 @@ const Dashboard = (props) => {
 
         <Styled.SectionsWrapper style={{ flexDirection: "column" }}>
           <section>
-            <Typography.SectionTitle>Your Mood Chart</Typography.SectionTitle>
+            <Typography.SectionTitleUnderline>
+              Your Mood Chart
+            </Typography.SectionTitleUnderline>
           </section>
 
           <section>
