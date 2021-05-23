@@ -1,13 +1,16 @@
 import { fireStoreApi } from "api/firestore-api";
+import { useAuth } from "context/AuthContext";
+import dayjs from "dayjs";
 import React, { useEffect, useState } from "react";
 import * as Styled from "./JournalPosts.styled";
 
-const JournalPosts = (token) => {
+const JournalPosts = () => {
   const [journals, setJournals] = useState([]);
+  const { token } = useAuth();
 
   useEffect(() => {
     fireStoreApi
-      .get("/journals", { headers: { Authorization: `Bearer ${token.token}` } })
+      .get("/journals", { headers: { Authorization: `Bearer ${token}` } })
       .then((res) => {
         console.log(res.data);
         if (res.data.length !== 0) setJournals(res.data);
@@ -15,7 +18,7 @@ const JournalPosts = (token) => {
         // setPosts(res);
       })
       .catch((err) => {
-        console.log(err.response.data.error);
+        console.log(err.response?.data.error);
       });
   }, []);
 
@@ -39,28 +42,30 @@ const JournalPosts = (token) => {
 
   return (
     <div>
-      <Styled.SectionWrapper>
-        <section>
-          <Styled.DateWrapper>22 May</Styled.DateWrapper>
-        </section>
-        <section>
-          <Styled.ContentWrapper>
-            Lorem ipsum dolor sit amet
-          </Styled.ContentWrapper>
-        </section>
-      </Styled.SectionWrapper>
-      <Styled.SectionWrapper>
-        <section>
-          <Styled.DateWrapper>19 Apr</Styled.DateWrapper>
-        </section>
-        <section>
-          <Styled.ContentWrapper>
-            Lorem ipsum dolor sit amet
-          </Styled.ContentWrapper>
-        </section>
-      </Styled.SectionWrapper>
+      {journals.length === 0 && "There is no journals"}
+      {journals.map((journal) => (
+        <Journal key={journal.dateCreated} {...journal} />
+      ))}
     </div>
   );
 };
+
+function Journal({ content, dateCreated }) {
+  const snippet = content.slice(0, 25);
+
+  return (
+    <Styled.SectionWrapper>
+      <div>
+        <Styled.DateWrapper>
+          {dayjs(dateCreated).format("MMM DD")}
+        </Styled.DateWrapper>
+      </div>
+
+      <section>
+        <Styled.ContentWrapper>{snippet}</Styled.ContentWrapper>
+      </section>
+    </Styled.SectionWrapper>
+  );
+}
 
 export default JournalPosts;
