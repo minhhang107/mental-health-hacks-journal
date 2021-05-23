@@ -7,25 +7,29 @@ export function AuthProvider(props) {
   const [error, setError] = React.useState(null);
   const history = useHistory();
 
+  const handleResponse = (res) => {
+    setError(null);
+    setToken(res.data.token);
+    history.push("/");
+  };
+
+  const handleError = (err) => {
+    setToken(null);
+    setError(err.response?.data.error);
+  };
+
   const login = (loginCreds) => {
     fireStoreApi
       .post("/users/login", loginCreds)
-      .then((res) => {
-        setError(null);
-        setToken(res.data.token);
-        history.push("/");
-      })
-      .catch((err) => {
-        setToken(null);
-        setError(err.response?.data.error);
-      });
+      .then(handleResponse)
+      .catch(handleError);
   };
 
-  const register = (signUpInfo) => {
+  const signup = (signUpInfo) => {
     fireStoreApi
       .post("/users/signup", signUpInfo)
-      .then((res) => setToken(res.data.token))
-      .catch(() => setToken(null));
+      .then(handleResponse)
+      .catch(handleError);
   };
 
   const logout = () => {}; // clear the token in localStorage and the user data
@@ -34,7 +38,7 @@ export function AuthProvider(props) {
   // rarely re-render/cause a performance problem.
   return (
     <AuthContext.Provider
-      value={{ token, error, login, logout, register }}
+      value={{ token, error, login, logout, signup }}
       {...props}
     />
   );
