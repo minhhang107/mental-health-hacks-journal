@@ -32,7 +32,7 @@ const Homepage = () => {
 
         <Styled.SectionsWrapper style={{ flexDirection: "column" }}>
           <section>
-            <Styled.SectionTitle>Your Mood Chart</Styled.SectionTitle>
+            <Typography.SectionTitle>Your Mood Chart</Typography.SectionTitle>
           </section>
 
           <section>
