@@ -2,10 +2,10 @@ const { admin, db } = require("../utils/init");
 const { analyze } = require("./sentiment");
 const { addPrompt } = require("./prompts");
 
-exports.getUsersJournals = (req, res) => {
+exports.getUsersJournals = (req, res) => {  
   db.collection("journals")
     .where("userId", "==", `${req.user.userId}`)
-    .orderBy("createdAt", "desc")
+    .orderBy("dateCreated", "desc")
     .get()
     .then((data) => {
       let journals = [];
@@ -58,11 +58,13 @@ exports.getOneJournal = (req, res) => {
   }
 */
 exports.addJournal = async (req, res) => {
-  if (req.body.content.trim() === "") {
-    return res.status(400).json({ error: "Content must not be empty" });
-  }
+  try {
+    if (req.body.content.trim() === "") {
+      return res.status(400).json({ error: "Content must not be empty" });
+    }
 
-  const analysis = await analyze(req.body.content);
+    const analysis = await analyze(req.body.content);
+
 
   const newJournal = {
     content: req.body.content,
@@ -72,11 +74,12 @@ exports.addJournal = async (req, res) => {
     moodScore: analysis.score,
   };
 
-  db.collection("journals")
-    .add(newJournal)
-    .then((doc) => {
-      const resJournal = newJournal;
-      resJournal.journalId = doc.id;
+
+    db.collection("journals")
+      .add(newJournal)
+      .then((doc) => {
+        const resJournal = newJournal;
+        resJournal.journalId = doc.id;
 
       // Filter negative or mixed journal only when user allows
       const isNegativeOrMixedScore =
@@ -88,14 +91,19 @@ exports.addJournal = async (req, res) => {
         addPrompt(resJournal);
       }
 
-      res.status(200).json(resJournal);
-    })
-    .catch((err) => {
-      console.error(err);
-      res
-        .status(500)
-        .json({ error: "Something went wrong, please try again!" });
-    });
+
+        res.status(200).json(resJournal);
+      })
+      .catch((err) => {
+        console.error(err);
+        res
+          .status(500)
+          .json({ error: "Something went wrong, please try again!" });
+      });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Something went wrong, please try again!" });
+  }
 };
 
 // delete journal

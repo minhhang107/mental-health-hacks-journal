@@ -78,17 +78,21 @@ exports.getRandomPrompts = (req, res) => {
 };
 
 exports.addPrompt = async (journal) => {
-  const newPrompt = {
-    redactedContent: await redact(journal.content),
-    userId: journal.userId,
-    journalId: req.params.journalId,
-    dateCreated: new Date().toISOString(),
-    moodScore: journal.moodScore,
-    magnitude: journal.magnitude,
-    visible: journal.visible
-  };
+  try {
+    const newPrompt = {
+      redactedContent: await redact(journal.content),
+      userId: journal.userId,
+      journalId: journal.journalId,
+      dateCreated: new Date().toISOString(),
+      moodScore: journal.moodScore,
+      magnitude: journal.magnitude,
+      visible: journal.visible,
+    };
 
-  await db.collection("prompts").add(newPrompt);
+    await db.collection("prompts").add(newPrompt);
+  } catch (error) {
+    throw error;
+  }
 };
 
 // delete prompt
