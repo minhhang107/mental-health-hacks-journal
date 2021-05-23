@@ -25,12 +25,15 @@ const Navbar = () => {
       <NavButton href="/" variant="contained" className={classes.margin}>
         <HomeIcon />
       </NavButton>
+
       <NavButton href="/" variant="contained" className={classes.margin}>
         <CalendarIcon />
       </NavButton>
+
       <NavButton href="/" variant="contained" className={classes.margin}>
         <StarIcon />
       </NavButton>
+
       <NavButton
         href="/user/dashboard"
         variant="contained"
