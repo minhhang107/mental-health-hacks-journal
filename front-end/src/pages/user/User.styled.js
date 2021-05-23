@@ -19,11 +19,12 @@ export const PageTitle = styled.h1`
   margin-bottom: ${(p) => p.theme.spacing[1]};
   font-family: ${(p) => p.theme.fontFamily.serif};
 `;
+
 export const Footer = styled.footer`
   text-align: center;
 
   && {
-    margin-top: ${(p) => p.theme.spacing[3]};
+    margin-top: ${(p) => p.theme.spacing[2]};
   }
 `;
 
@@ -36,7 +37,7 @@ export const Wrapper = styled.section`
 export const Button = styled(BaseButton)`
   && {
     display: block;
-    margin: ${(p) => p.theme.spacing[4]} auto 0 auto;
+    margin: ${(p) => p.theme.spacing[3]} auto 0 auto;
   }
 `;
 
@@ -47,4 +48,9 @@ export const Container = styled.div`
   > svg {
     color: "#A9C8FF";
   }
+`;
+
+export const Error = styled.div`
+  text-align: center;
+  color: #e2522c;
 `;

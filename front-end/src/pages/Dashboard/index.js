@@ -1,10 +1,11 @@
 import { ReactComponent as SettingIcon } from "assets/svg/setting-icon.svg";
-import ProfilePicture from "../../assets/profile-picture.png";
 import Layout from "components/Layout";
+import MoodChart from "components/MoodChart";
 import * as Typography from "components/ui/Typography";
 import * as Wrapper from "components/ui/Wrapper";
 import React from "react";
 import { Helmet } from "react-helmet";
+import ProfilePicture from "../../assets/profile-picture.png";
 import * as Styled from "./Dashboard.styled";
 
 const Homepage = () => {
@@ -29,12 +30,14 @@ const Homepage = () => {
           </section>
         </Styled.SectionsWrapper>
 
-        <Styled.SectionsWrapper>
+        <Styled.SectionsWrapper style={{ flexDirection: "column" }}>
           <section>
-            <Styled.SectionTitle>Your Mood Chart</Styled.SectionTitle>
+            <Typography.SectionTitle>Your Mood Chart</Typography.SectionTitle>
           </section>
 
-          <section>{/* chart here */}</section>
+          <section>
+            <MoodChart />
+          </section>
         </Styled.SectionsWrapper>
 
         <Styled.SettingWrapper>

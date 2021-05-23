@@ -1,7 +1,7 @@
 import { ReactComponent as BellIcon } from "assets/svg/bell-icon.svg";
 import { ReactComponent as EditIcon } from "assets/svg/edit-icon.svg";
 import Layout from "components/Layout";
-import MoodPicker from "components/MoodPicker";
+import MoodChart from "components/MoodChart";
 import * as Typography from "components/ui/Typography";
 import * as Wrapper from "components/ui/Wrapper";
 import React from "react";
@@ -32,15 +32,15 @@ const Homepage = () => {
                 <EditIcon />
                 How are you feeling today?
               </Styled.EditButton>
-
-              <MoodPicker />
             </Styled.SectionBody>
           </section>
 
           <section>
-            <Styled.SectionTitle>Your Activity</Styled.SectionTitle>
+            <Typography.SectionTitle>Your Activity</Typography.SectionTitle>
           </section>
         </Styled.SectionsWrapper>
+
+        <MoodChart />
       </Wrapper.Page>
     </Layout>
   );

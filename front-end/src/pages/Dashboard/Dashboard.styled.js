@@ -61,6 +61,7 @@ export const SectionsWrapper = styled.div`
   margin-top: ${(p) => p.theme.spacing[3]};
   margin-bottom: ${(p) => p.theme.spacing[3]};
   display: flex;
+
   > * + * {
     margin-top: ${(p) => p.theme.spacing[4]};
   }

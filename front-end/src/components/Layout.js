@@ -11,6 +11,8 @@ const Layout = ({ children, className }) => {
   );
 };
 
-const StyledMain = styled.main``;
+const StyledMain = styled.main`
+  height: 100%;
+`;
 
 export default Layout;
