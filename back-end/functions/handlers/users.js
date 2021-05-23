@@ -2,6 +2,8 @@ const { admin, db } = require("../utils/init");
 
 const { firebaseConfig } = require("../utils/config");
 
+const { createAWeekTrackerForNewUser } = require("../handlers/weeklyTrackers");
+
 const {
   validateSignupData,
   validateLoginData,
@@ -43,6 +45,9 @@ exports.signup = (req, res) => {
       };
 
       return db.doc(`/users/${userId}`).set(userCredentials);
+    })
+    .then(() => {
+      return createAWeekTrackerForNewUser(userId);
     })
     .then(() => {
       return res.status(200).json({ token });

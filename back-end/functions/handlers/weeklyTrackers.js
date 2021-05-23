@@ -56,3 +56,19 @@ exports.createAWeeklyTrackerForUser = (userId) => {
 
   return db.collection("weeklyTrackers").add(newWeeklyTracker);
 };
+
+exports.createAWeekTrackerForNewUser = (userId) => {
+  const current = new Date();
+  const first = current.getDate() - current.getDay() + 1;
+  const last = first + 7;
+
+  const newWeeklyTracker = {
+    userId: userId,
+    startDate: current.setDate(first),
+    endDate: current.setDate(last),
+    moodSelected: [0, 0, 0, 0, 0, 0, 0],
+    journalWritten: [false, false, false, false, false, false, false],
+  };
+
+  return db.collection("weeklyTrackers").add(newWeeklyTracker);
+};
