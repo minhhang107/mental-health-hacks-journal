@@ -2,7 +2,7 @@ import { ReactComponent as BellIcon } from "assets/svg/bell-icon.svg";
 import { ReactComponent as EditIcon } from "assets/svg/edit-icon.svg";
 import { ReactComponent as PencilButton } from "assets/svg/pencil-button.svg";
 import Layout from "components/Layout";
-import MoodChart from "components/MoodChart";
+import JournalPosts from "components/JournalPosts";
 import MoodPicker from "components/MoodPicker";
 import * as Typography from "components/ui/Typography";
 import * as Wrapper from "components/ui/Wrapper";
@@ -48,15 +48,19 @@ const Homepage = () => {
           />
         </Styled.SectionBody>
 
-        <Styled.SectionsWrapper>
+        <Styled.SectionsWrapper
+          style={{ display: "flex", flexDirection: "column" }}
+        >
           <section>
             <Typography.SectionTitleUnderline>
-              Your Activity
+              Your Journals
             </Typography.SectionTitleUnderline>
           </section>
-        </Styled.SectionsWrapper>
 
-        <MoodChart />
+          <section>
+            <JournalPosts />
+          </section>
+        </Styled.SectionsWrapper>
       </Wrapper.Page>
     </Layout>
   );
