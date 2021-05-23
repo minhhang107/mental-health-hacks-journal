@@ -26,7 +26,11 @@ const Navbar = () => {
         <HomeIcon />
       </NavButton>
 
-      <NavButton href="/" variant="contained" className={classes.margin}>
+      <NavButton
+        href="/entry/add"
+        variant="contained"
+        className={classes.margin}
+      >
         <CalendarIcon />
       </NavButton>
 

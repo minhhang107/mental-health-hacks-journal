@@ -6,6 +6,7 @@ import * as Typography from "components/ui/Typography";
 import * as Wrapper from "components/ui/Wrapper";
 import React from "react";
 import { Helmet } from "react-helmet";
+import { Link } from "react-router-dom";
 import * as Styled from "./Homepage.styled";
 
 const Homepage = () => {
@@ -28,15 +29,19 @@ const Homepage = () => {
         <Styled.SectionsWrapper>
           <section>
             <Styled.SectionBody>
-              <Styled.EditButton>
-                <EditIcon />
-                How are you feeling today?
-              </Styled.EditButton>
+              <Link to="/entry/add">
+                <Styled.EditButton>
+                  <EditIcon />
+                  How are you feeling today?
+                </Styled.EditButton>
+              </Link>
             </Styled.SectionBody>
           </section>
 
           <section>
-            <Typography.SectionTitle>Your Activity</Typography.SectionTitle>
+            <Typography.SectionTitleUnderline style={{ marginBottom: "3rem" }}>
+              Your Activity
+            </Typography.SectionTitleUnderline>
           </section>
         </Styled.SectionsWrapper>
 

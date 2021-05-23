@@ -10,7 +10,9 @@ const JournalPosts = () => {
 
   useEffect(() => {
     fireStoreApi
-      .get("/journals", { headers: { Authorization: `Bearer ${token}` } })
+      .get(`/journals/getUsersJournals`, {
+        headers: { Authorization: `Bearer ${token}` },
+      })
       .then((res) => {
         console.log(res.data);
         if (res.data.length !== 0) setJournals(res.data);
@@ -20,7 +22,7 @@ const JournalPosts = () => {
       .catch((err) => {
         console.log(err.response?.data.error);
       });
-  }, []);
+  }, [token]);
 
   // journals.map((journal) => {
   //   var dateCreated = new Date(journal.dateCreated);
