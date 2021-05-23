@@ -8,6 +8,7 @@ import * as Typography from "components/ui/Typography";
 import * as Wrapper from "components/ui/Wrapper";
 import React, { useState } from "react";
 import { Helmet } from "react-helmet";
+import { useHistory } from "react-router-dom";
 import * as Styled from "../User.styled";
 
 const UserLogin = () => {
@@ -41,7 +42,7 @@ const LoginForm = () => {
     email: "",
     password: "",
   });
-
+  const history = useHistory();
   const handleChange = (ev) => {
     const { name, value } = ev.target;
 
@@ -52,10 +53,18 @@ const LoginForm = () => {
     ev.preventDefault();
 
     console.log(formData);
-    axios.post("/api/users/login", {
-      email: formData.email,
-      password: formData.password,
-    });
+    axios
+      .post(
+        "https://us-central1-mental-health-1bd2d.cloudfunctions.net/api/users/login",
+        {
+          email: formData.email,
+          password: formData.password,
+        }
+      )
+      .then((res) => {
+        history.push("/");
+        console.log(res.data.token);
+      });
   };
 
   return (

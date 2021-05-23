@@ -6,8 +6,11 @@ import * as Wrapper from "components/ui/Wrapper";
 import React from "react";
 import { Helmet } from "react-helmet";
 import * as Styled from "./Dashboard.styled";
+import JournalPosts from "components/JournalPosts";
+import { useLocation } from "react-router-dom";
 
-const Homepage = () => {
+const Dashboard = (props) => {
+  const location = useLocation();
   return (
     <Layout>
       <Helmet>
@@ -29,7 +32,7 @@ const Homepage = () => {
           </section>
         </Styled.SectionsWrapper>
 
-        <Styled.SectionsWrapper>
+        <Styled.SectionsWrapper style={{ flexDirection: "column" }}>
           <section>
             <Styled.SectionTitle>Your Mood Chart</Styled.SectionTitle>
           </section>
@@ -56,4 +59,4 @@ const Homepage = () => {
   );
 };
 
-export default Homepage;
+export default Dashboard;
