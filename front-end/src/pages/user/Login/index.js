@@ -7,8 +7,8 @@ import Link from "components/ui/Link";
 import * as Typography from "components/ui/Typography";
 import * as Wrapper from "components/ui/Wrapper";
 import React, { useState } from "react";
-import { Helmet } from "react-helmet";
 import { useHistory } from "react-router-dom";
+import { Helmet } from "react-helmet";
 import * as Styled from "../User.styled";
 
 const UserLogin = () => {
@@ -38,21 +38,23 @@ const UserLogin = () => {
 };
 
 const LoginForm = () => {
+  const history = useHistory();
+
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
-  const history = useHistory();
+
+  const [error, setError] = useState("");
+
   const handleChange = (ev) => {
     const { name, value } = ev.target;
-
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
   const handleSubmit = (ev) => {
     ev.preventDefault();
 
-    console.log(formData);
     axios
       .post(
         "https://us-central1-mental-health-1bd2d.cloudfunctions.net/api/users/login",
@@ -62,8 +64,17 @@ const LoginForm = () => {
         }
       )
       .then((res) => {
+        console.log(res);
         history.push("/");
-        console.log(res.data.token);
+      })
+      .catch((err) => {
+        setFormData({
+          email: "",
+          password: "",
+        });
+        setError(err.response.data.error);
+
+        console.log(err.response.data.error);
       });
   };
 
@@ -88,6 +99,7 @@ const LoginForm = () => {
         value={formData.password}
         onChange={handleChange}
       />
+      {error ? <Styled.Error>{error}</Styled.Error> : null}
       <Styled.Button contained>Sign In</Styled.Button>
     </Styled.Form>
   );
