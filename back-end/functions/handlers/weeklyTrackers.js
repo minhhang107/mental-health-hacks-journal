@@ -1,7 +1,8 @@
 const { db } = require("../utils/init");
 
 const getAllWeeklyTrackersOfUser = (userId) => {
-  db.collection("weeklyTrackers")
+  return db
+    .collection("weeklyTrackers")
     .where("userId", "==", `${userId}`)
     .orderBy("dateCreated", "desc")
     .get()
@@ -53,18 +54,5 @@ exports.createAWeeklyTrackerForUser = (userId) => {
     journalWritten: [false, false, false, false, false, false, false],
   };
 
-  db.collection("weeklyTrackers")
-    .add(newWeeklyTracker)
-    .then((doc) => {
-      const resWeeklyTracker = newWeeklyTracker;
-      resWeeklyTracker.weeklyTrackerId = doc.id;
-
-      res.status(200).json(resWeeklyTracker);
-    })
-    .catch((err) => {
-      console.log(err);
-      res.status(500).json({
-        error: "Something went wrong, please try again",
-      });
-    });
+  return db.collection("weeklyTrackers").add(newWeeklyTracker);
 };
