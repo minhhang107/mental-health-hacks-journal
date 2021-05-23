@@ -57,7 +57,7 @@ exports.createAWeeklyTrackerForUser = (userId) => {
   return db.collection("weeklyTrackers").add(newWeeklyTracker);
 };
 
-exports.creteAWeekTrackerForNewUser = (userId) => {
+exports.createAWeekTrackerForNewUser = (userId) => {
   const current = new Date();
   const first = current.getDate() - current.getDay() + 1;
   const last = first + 7;
