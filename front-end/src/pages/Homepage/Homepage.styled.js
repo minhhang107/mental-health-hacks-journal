@@ -13,24 +13,6 @@ export const SectionsWrapper = styled.div`
   }
 `;
 
-export const SectionTitle = styled.h2`
-  font-weight: bold;
-  font-size: 1.8rem;
-
-  ::after {
-    width: 4rem;
-    height: 0.5rem;
-    margin-top: ${(p) => p.theme.spacing[1]};
-    content: "";
-    display: block;
-    background: linear-gradient(
-      262.83deg,
-      #a9c8ff -9.45%,
-      ${(p) => p.theme.colors.blue.default} 88.41%
-    );
-  }
-`;
-
 export const EditButton = styled.button`
   background: #ffc076;
   color: white;

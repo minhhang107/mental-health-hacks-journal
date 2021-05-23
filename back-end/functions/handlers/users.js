@@ -14,7 +14,6 @@ exports.signup = (req, res) => {
   const newUser = {
     email: req.body.email,
     password: req.body.password,
-    confirmPassword: req.body.confirmPassword,
     firstName: req.body.firstName,
     lastName: req.body.lastName,
     image: "default-user-image.png",
@@ -85,5 +84,29 @@ exports.login = (req, res) => {
       return res
         .status(403)
         .json({ error: "Wrong credentials, please try again..." });
+    });
+};
+
+exports.getAllUsers = () => {
+  return db
+    .collection("users")
+    .get()
+    .then((data) => {
+      let users = [];
+      data.forEach((doc) => {
+        users.push({
+          userId: doc.data().userId,
+          email: doc.data().email,
+          firstName: doc.data().firstName,
+          lastName: doc.data().lastName,
+          dateCreated: doc.data().dateCreated,
+          image: doc.data().image,
+        });
+      });
+      return users;
+    })
+    .catch((err) => {
+      console.log(err);
+      throw new Error("Problem getting all users");
     });
 };

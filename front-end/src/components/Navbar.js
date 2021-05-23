@@ -1,10 +1,10 @@
-import { ReactComponent as HomeIcon } from "assets/svg/home-icon.svg";
+import BottomNavigation from "@material-ui/core/BottomNavigation";
+import { makeStyles } from "@material-ui/core/styles";
 import { ReactComponent as CalendarIcon } from "assets/svg/calendar-icon.svg";
+import { ReactComponent as HomeIcon } from "assets/svg/home-icon.svg";
 import { ReactComponent as StarIcon } from "assets/svg/star-icon.svg";
 import { ReactComponent as UserIcon } from "assets/svg/user-icon.svg";
 import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import BottomNavigation from "@material-ui/core/BottomNavigation";
 import NavButton from "./ui/NavButton";
 
 const useStyles = makeStyles({
@@ -32,7 +32,7 @@ const Navbar = () => {
         <StarIcon />
       </NavButton>
       <NavButton
-        href="/dashboard"
+        href="/user/dashboard"
         variant="contained"
         className={classes.margin}
       >
