@@ -3,15 +3,17 @@ import Layout from "components/Layout";
 import MoodChart from "components/MoodChart";
 import * as Typography from "components/ui/Typography";
 import * as Wrapper from "components/ui/Wrapper";
+import { useAuth } from "context/AuthContext";
 import React from "react";
 import { Helmet } from "react-helmet";
+import { useLocation } from "react-router-dom";
 import ProfilePicture from "../../assets/profile-picture.png";
 import * as Styled from "./Dashboard.styled";
-import JournalPosts from "components/JournalPosts";
-import { useLocation } from "react-router-dom";
 
 const Dashboard = (props) => {
   const location = useLocation();
+  const { logout } = useAuth();
+
   return (
     <Layout>
       <Helmet>
@@ -63,7 +65,9 @@ const Dashboard = (props) => {
           <section>
             <Styled.SettingBody>
               <Styled.SettingButton>Account Details</Styled.SettingButton>
-              <Styled.SettingButton>Log Out</Styled.SettingButton>
+              <Styled.SettingButton onClick={logout}>
+                Log Out
+              </Styled.SettingButton>
             </Styled.SettingBody>
           </section>
         </Styled.SettingWrapper>

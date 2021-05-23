@@ -3,7 +3,7 @@ import * as React from "react";
 import { useHistory } from "react-router-dom";
 const AuthContext = React.createContext();
 export function AuthProvider(props) {
-  const [token, setToken] = React.useState(null);
+  const [token, setToken] = React.useState("dasdas");
   const [error, setError] = React.useState(null);
   const history = useHistory();
 
@@ -32,7 +32,10 @@ export function AuthProvider(props) {
       .catch(handleError);
   };
 
-  const logout = () => {}; // clear the token in localStorage and the user data
+  const logout = () => {
+    setToken(null);
+    setError(null);
+  }; // clear the token in localStorage and the user data
   // note, I'm not bothering to optimize this `value` with React.useMemo here
   // because this is the top-most component rendered in our app and it will very
   // rarely re-render/cause a performance problem.

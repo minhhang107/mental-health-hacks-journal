@@ -36,7 +36,7 @@ const Routes = () => {
             <EntryPage />
           </ProtectedRoute>
 
-          <ProtectedRoute path="/">
+          <ProtectedRoute path="/" exact>
             <Homepage />
           </ProtectedRoute>
 
