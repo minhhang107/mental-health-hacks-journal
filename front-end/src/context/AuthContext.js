@@ -3,7 +3,7 @@ import * as React from "react";
 import { useHistory } from "react-router-dom";
 const AuthContext = React.createContext();
 export function AuthProvider(props) {
-  const [token, setToken] = React.useState("dasdas");
+  const [token, setToken] = React.useState("");
   const [error, setError] = React.useState(null);
   const history = useHistory();
 
