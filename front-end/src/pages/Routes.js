@@ -1,3 +1,5 @@
+import ProtectedRoute from "components/ProtectedRoute";
+import Homepage from "pages/Homepage/index";
 import React, { Suspense } from "react";
 import {
   BrowserRouter as Router,
@@ -5,32 +7,39 @@ import {
   Route,
   Switch,
 } from "react-router-dom";
+import Dashboard from "./Dashboard";
 import EntryAddPage from "./entry/Add/index";
-import EntryPage from "./entry/index";
-
-const Home = React.lazy(() => import("pages/Homepage/index"));
-const Dashboard = React.lazy(() => import("pages/Dashboard/index"));
-const UserLogin = React.lazy(() => import("pages/user/Login/index"));
-const UserSignup = React.lazy(() => import("pages/user/Signup/index"));
+import EntryPage from "./entry/Index";
+import UserLogin from "./user/Login";
+import UserSignup from "./user/Signup";
 
 const Routes = () => {
   return (
     <Router>
       <Suspense fallback={<h1>Loading</h1>}>
         <Switch>
-          <Route path="/user/login" component={UserLogin} />
-          <Route path="/user/signup" component={UserSignup} />
-          <Route path="/user/dashboard" component={Dashboard} />
+          <ProtectedRoute path="/user/dashboard">
+            <Dashboard />
+          </ProtectedRoute>
 
-          <Route path="/entry/add">
+          <Route path="/user/login">
+            <UserLogin />
+          </Route>
+          <Route path="/user/signup">
+            <UserSignup />
+          </Route>
+
+          <ProtectedRoute path="/entry/add">
             <EntryAddPage />
-          </Route>
-
-          <Route path="/entry">
+          </ProtectedRoute>
+          <ProtectedRoute path="/entry">
             <EntryPage />
-          </Route>
+          </ProtectedRoute>
 
-          <Route path="/" component={Home} exact />
+          <ProtectedRoute path="/">
+            <Homepage />
+          </ProtectedRoute>
+
           <Route path="/404" component={() => <h1>Page not found</h1>} />
 
           <Redirect to="/404" />

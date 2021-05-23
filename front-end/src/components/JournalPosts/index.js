@@ -1,16 +1,13 @@
-import React, { useState, useEffect } from "react";
+import { fireStoreApi } from "api/firestore-api";
+import React, { useEffect, useState } from "react";
 import * as Styled from "./JournalPosts.styled";
-import axios from "axios";
 
 const JournalPosts = (token) => {
   const [journals, setJournals] = useState([]);
 
   useEffect(() => {
-    axios
-      .get(
-        "https://us-central1-mental-health-1bd2d.cloudfunctions.net/api/journals/",
-        { headers: { Authorization: `Bearer ${token.token}` } }
-      )
+    fireStoreApi
+      .get("/journals", { headers: { Authorization: `Bearer ${token.token}` } })
       .then((res) => {
         console.log(res.data);
         if (res.data.length !== 0) setJournals(res.data);
