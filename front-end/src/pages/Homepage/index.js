@@ -7,11 +7,8 @@ import * as Wrapper from "components/ui/Wrapper";
 import React from "react";
 import { Helmet } from "react-helmet";
 import * as Styled from "./Homepage.styled";
-import JournalPosts from "components/JournalPosts";
-import { useLocation } from "react-router-dom";
-const Homepage = (props) => {
-  const location = useLocation();
 
+const Homepage = () => {
   return (
     <Layout>
       <Helmet>
@@ -44,8 +41,6 @@ const Homepage = (props) => {
             <Styled.SectionTitle>Your Activity</Styled.SectionTitle>
           </section>
         </Styled.SectionsWrapper>
-
-        {/* <JournalPosts token={location.state.tokenValue} /> */}
       </Wrapper.Page>
     </Layout>
   );
