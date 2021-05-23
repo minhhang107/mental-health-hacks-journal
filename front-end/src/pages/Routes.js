@@ -6,6 +6,7 @@ import {
   Switch,
 } from "react-router-dom";
 import EntryAddPage from "./entry/Add/index";
+import EntryPage from "./entry/index";
 
 const Home = React.lazy(() => import("pages/Homepage/index"));
 const Dashboard = React.lazy(() => import("pages/Dashboard/index"));
@@ -23,6 +24,10 @@ const Routes = () => {
 
           <Route path="/entry/add">
             <EntryAddPage />
+          </Route>
+
+          <Route path="/entry">
+            <EntryPage />
           </Route>
 
           <Route path="/" component={Home} exact />

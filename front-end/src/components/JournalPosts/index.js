@@ -44,7 +44,7 @@ const JournalPosts = (token) => {
     <div>
       <Styled.SectionWrapper>
         <section>
-          <Styled.DateWrapper>01</Styled.DateWrapper>
+          <Styled.DateWrapper>22 May</Styled.DateWrapper>
         </section>
         <section>
           <Styled.ContentWrapper>
@@ -54,7 +54,7 @@ const JournalPosts = (token) => {
       </Styled.SectionWrapper>
       <Styled.SectionWrapper>
         <section>
-          <Styled.DateWrapper>01</Styled.DateWrapper>
+          <Styled.DateWrapper>19 Apr</Styled.DateWrapper>
         </section>
         <section>
           <Styled.ContentWrapper>
