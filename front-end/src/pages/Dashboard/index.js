@@ -7,8 +7,11 @@ import React from "react";
 import { Helmet } from "react-helmet";
 import ProfilePicture from "../../assets/profile-picture.png";
 import * as Styled from "./Dashboard.styled";
+import JournalPosts from "components/JournalPosts";
+import { useLocation } from "react-router-dom";
 
-const Homepage = () => {
+const Dashboard = (props) => {
+  const location = useLocation();
   return (
     <Layout>
       <Helmet>
@@ -59,4 +62,4 @@ const Homepage = () => {
   );
 };
 
-export default Homepage;
+export default Dashboard;
