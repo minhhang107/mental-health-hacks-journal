@@ -20,7 +20,7 @@ exports.getUsersJournals = (req, res) => {
         });
       });
 
-      return res.json(journals);
+      return res.status(200).json(journals);
     })
     .catch((err) => {
       console.error(err);
@@ -65,13 +65,15 @@ exports.addJournal = async (req, res) => {
 
     const analysis = await analyze(req.body.content);
 
-    const newJournal = {
-      content: req.body.content,
-      userId: req.user.userId,
-      dateCreated: new Date().toISOString(),
-      moodStatus: req.body.moodStatus,
-      moodScore: analysis.score,
-    };
+
+  const newJournal = {
+    content: req.body.content,
+    userId: req.user.userId,
+    dateCreated: new Date().toISOString(),
+    moodStatus: req.body.moodStatus,
+    moodScore: analysis.score,
+  };
+
 
     db.collection("journals")
       .add(newJournal)
@@ -79,15 +81,16 @@ exports.addJournal = async (req, res) => {
         const resJournal = newJournal;
         resJournal.journalId = doc.id;
 
-        // Filter negative or mixed journal only when user allows
-        const isNegativeOrMixedScore =
-          analysis.score < 0 || (analysis.score == 0 && analysis.magnitude > 1);
-        if (req.body.allowPrompt && isNegativeOrMixedScore) {
-          resJournal.magnitude = analysis.magnitude;
-          resJournal.visible = req.body.allowPrompt;
-          // Create a prompt from negative content
-          addPrompt(resJournal);
-        }
+      // Filter negative or mixed journal only when user allows
+      const isNegativeOrMixedScore =
+        analysis.score < 0 || (analysis.score == 0 && analysis.magnitude > 1);
+      if (req.body.allowPrompt && isNegativeOrMixedScore) {
+        resJournal.magnitude = analysis.magnitude;
+        resJournal.visible = req.body.allowPrompt;
+        // Create a prompt from negative content
+        addPrompt(resJournal);
+      }
+
 
         res.status(200).json(resJournal);
       })

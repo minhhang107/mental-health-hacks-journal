@@ -3,7 +3,7 @@ const { admin, db } = require("../utils/init");
 exports.getFeedbacksOfPrompt = (req, res) => {
   db.collection("feedbacks")
     .where("promptId", "==", `${req.params.promptId}`)
-    .orderBy("createdAt", "desc")
+    .orderBy("dateCreated", "desc")
     .get()
     .then((data) => {
       let feedbacks = [];
