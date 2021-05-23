@@ -43,6 +43,16 @@ const Dashboard = (props) => {
           </section>
         </Styled.SectionsWrapper>
 
+        <Styled.SectionsWrapper style={{ flexDirection: "column" }}>
+          <section>
+            <Typography.SectionTitle>Your Journals</Typography.SectionTitle>
+          </section>
+
+          <section>
+            <JournalPosts />
+          </section>
+        </Styled.SectionsWrapper>
+
         <Styled.SettingWrapper>
           <section>
             <Styled.SettingHeader>
