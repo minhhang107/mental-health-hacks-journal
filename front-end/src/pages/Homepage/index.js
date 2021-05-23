@@ -39,7 +39,9 @@ const Homepage = () => {
           </section>
 
           <section>
-            <Typography.SectionTitle>Your Activity</Typography.SectionTitle>
+            <Typography.SectionTitleUnderline style={{ marginBottom: "3rem" }}>
+              Your Activity
+            </Typography.SectionTitleUnderline>
           </section>
         </Styled.SectionsWrapper>
 
