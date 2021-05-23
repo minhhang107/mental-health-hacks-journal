@@ -36,7 +36,7 @@ const Homepage = () => {
           </section>
 
           <section>
-            <Styled.SectionTitle>Your Activity</Styled.SectionTitle>
+            <Typography.SectionTitle>Your Activity</Typography.SectionTitle>
           </section>
         </Styled.SectionsWrapper>
 
